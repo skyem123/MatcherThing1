@@ -1,4 +1,4 @@
-package uk.co.skyem.random.regexreplace1
+package uk.co.skyem.random.matcherThing1
 
 public interface ToRegex {
     fun toRegex(): String // TODO: What should this return?

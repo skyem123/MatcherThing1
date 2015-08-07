@@ -4,24 +4,21 @@ import java.util.*
 import java.util.regex
 import java.util.regex.Pattern
 import kotlin.text.Regex
+import kotlin.text.RegexOption
 
 /**
  * An exact matcher matches a string exactly, no regex, etc...
  */
-public class ExactMatcher(matches: String) : Matcher, ToRegex {
-    val matchString = matches;
+public class ExactMatcher(matches: String, caseInsensitive: Boolean) :
+        RegexMatcher(if (caseInsensitive) "(?i)" + Regex.escape(matches) else Regex.escape(matches)) {
+    constructor(matches: String): this(matches, false)
 
-    override fun toRegex(): String {
-        return Regex.escape(matchString)
-    }
-
-    override fun canToRegex(): Boolean {
-        return true
-    }
+    val matchString = matches
+    val caseInsensitive = caseInsensitive
 
     override fun useOn(string: String): Matches {
         val matches = ArrayList<Match>()
-        val regexMatch = Regex(toRegex()).matchAll(string).forEach {
+        val regexMatch = matchRegex.matchAll(string).forEach {
             matches.add(Match(it.value, it.range.start, it.range.end))
         }
         return Matches(matches)

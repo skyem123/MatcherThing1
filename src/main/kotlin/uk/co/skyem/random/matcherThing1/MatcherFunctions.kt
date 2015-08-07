@@ -1,0 +1,34 @@
+package uk.co.skyem.random.matcherThing1
+
+import java.util.regex.Pattern
+import kotlin.platform.platformStatic
+import kotlin.text.Regex
+import kotlin.text.RegexOption
+
+public object MatcherFunctions {
+    public platformStatic fun match(toMatch: String): ExactMatcher {
+        return ExactMatcher(toMatch)
+    }
+    public platformStatic fun matchInsensitive(toMatch: String): ExactMatcher {
+        return ExactMatcher(toMatch, true)
+    }
+
+    public platformStatic fun matchRegex(pattern: String): RegexMatcher {
+        return RegexMatcher(pattern)
+    }
+    public platformStatic fun matchRegex(pattern: String, flags: Int): RegexMatcher {
+        return RegexMatcher(pattern, flags)
+    }
+    public platformStatic fun matchRegex(pattern: String, flag: RegexOption): RegexMatcher {
+        return RegexMatcher(pattern, flag)
+    }
+    public platformStatic fun matchRegex(pattern: String, flags: Set<RegexOption>): RegexMatcher {
+        return RegexMatcher(pattern, flags)
+    }
+    public platformStatic fun matchRegex(pattern: Pattern): RegexMatcher {
+        return RegexMatcher(pattern)
+    }
+    public platformStatic fun matchRegex(pattern: Regex): RegexMatcher {
+        return RegexMatcher(pattern)
+    }
+}

@@ -31,4 +31,8 @@ public object MatcherFunctions {
     public platformStatic fun matchRegex(pattern: Regex): RegexMatcher {
         return RegexMatcher(pattern)
     }
+
+    public platformStatic fun matchAll(): EverythingMatcher {
+        return EverythingMatcher()
+    }
 }

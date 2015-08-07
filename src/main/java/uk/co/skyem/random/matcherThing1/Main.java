@@ -2,7 +2,7 @@ package uk.co.skyem.random.matcherThing1;
 
 import static uk.co.skyem.random.matcherThing1.MatcherFunctions.*;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
 
         ExactMatcher test1 = match("test");
@@ -24,12 +24,21 @@ public class Main {
         System.out.println();
 
         //ExactMatcher test3 = matchInsensitive("test");
-        RegexMatcher test3 = matchInsensitive("test");
-        System.out.println(test1.getMatchString());
+        ExactMatcher test3 = matchInsensitive("test");
+        System.out.println(test3.getMatchString());
         String toTest3 = "This is a Test";
         System.out.println(test3.getMatchRegex());
         Match match3 = test3.useOn(toTest3).first();
         System.out.println(toTest3 + "\n" + match3.getStart() + " " + match3.getEnd() + " " + match3.getString());
         // matchInsensitive("test").useOn("This is a Test").first();
+
+        System.out.println();
+
+        RegexMatcher test4 = matchRegex(".*");
+        System.out.println(test4.getMatchRegex());
+        String toTest4 = "this is a test";
+        Match match4 = test4.useOn(toTest4).first();
+        System.out.println(toTest4 + "\n" + match4.getStart() + " " + match4.getEnd() + " " + match4.getString());
+        // matchAll().useOn("This is a test").first();
     }
 }

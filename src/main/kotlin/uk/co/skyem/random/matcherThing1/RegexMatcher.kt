@@ -28,10 +28,9 @@ public open class RegexMatcher(pattern: Regex) : Matcher, ToRegex {
 
     override fun useOn(string: String): Matches {
         val matches = ArrayList<Match>()
-        val regexMatch = matchRegex.matchAll(string).forEach {
+        matchRegex.matchAll(string).forEach {
             matches.add(Match(it.value, it.range.start, it.range.end))
         }
         return Matches(matches)
     }
-
 }

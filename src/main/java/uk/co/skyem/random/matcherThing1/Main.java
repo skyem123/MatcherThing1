@@ -27,8 +27,8 @@ public class Main {
         RegexMatcher test3 = matchInsensitive("test");
         System.out.println(test1.getMatchString());
         String toTest3 = "This is a Test";
-        System.out.println(test3.getMatchRegex().getOptions());
-        Match match3 = test1.useOn(toTest3).first();
+        System.out.println(test3.getMatchRegex());
+        Match match3 = test3.useOn(toTest3).first();
         System.out.println(toTest3 + "\n" + match3.getStart() + " " + match3.getEnd() + " " + match3.getString());
         // matchInsensitive("test").useOn("This is a Test").first();
     }

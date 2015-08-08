@@ -35,4 +35,19 @@ public object MatcherFunctions {
     public platformStatic fun matchAll(): EverythingMatcher {
         return EverythingMatcher()
     }
+
+    public platformStatic fun startsWith(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, true, false)
+    }
+    public platformStatic fun endsWith(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, false, true)
+    }
+    public platformStatic fun matchAllIf(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, true, true)
+    }
+    /*
+    public platformStatic fun seNop(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, true, false)
+    }
+    */
 }

@@ -3,8 +3,13 @@ package uk.co.skyem.random.matcherThing1
 // TODO: Be as lazy as possible.
 public class Matches(matches: Array<Match>) : List<Match> {
     constructor(matches: Collection<Match>) : this(matches.toTypedArray())
+    constructor()                           : this(arrayOf())
 
-    val matches = matches
+    private val matches = matches
+
+    fun matchFound(): Boolean {
+        return matches.isNotEmpty()
+    }
 
     fun first(): Match {
         return matches.first()

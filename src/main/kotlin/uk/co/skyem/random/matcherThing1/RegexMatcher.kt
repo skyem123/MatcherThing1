@@ -28,9 +28,13 @@ public open class RegexMatcher(pattern: Regex) : Matcher, ToRegex {
 
     override fun useOn(string: String): Matches {
         val matches = ArrayList<Match>()
-        matchRegex.matchAll(string).forEach {
-            matches.add(Match(it.value, it.range.start, it.range.end))
-        }
+
+        try { // no, I don't want to do this, but... https://youtrack.jetbrains.com/issue/KT-8763
+            matchRegex.matchAll(string).forEach {
+                matches.add(Match(it.value, it.range.start, it.range.end))
+            }
+        } catch (e: java.lang.IndexOutOfBoundsException) {}
+
         return Matches(matches)
     }
 }

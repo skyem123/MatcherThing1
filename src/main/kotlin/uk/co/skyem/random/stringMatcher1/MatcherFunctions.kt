@@ -37,18 +37,36 @@ public object MatcherFunctions {
     }
 
     public platformStatic fun startsWith(matcher: Matcher): StartEndMatcher {
-        return StartEndMatcher(matcher, true, false)
+        return StartEndMatcher(matcher, true, false, false)
     }
     public platformStatic fun endsWith(matcher: Matcher): StartEndMatcher {
-        return StartEndMatcher(matcher, false, true)
+        return StartEndMatcher(matcher, false, true, false)
     }
     // Well... this is a nice side effect!
     public platformStatic fun matchAllIf(matcher: Matcher): StartEndMatcher {
-        return StartEndMatcher(matcher, true, true)
+        return StartEndMatcher(matcher, true, true, false)
     }
     /* Not using this because this is a nop
-    public platformStatic fun seNop(matcher: Matcher): StartEndMatcher {
-        return StartEndMatcher(matcher, false, false)
+    public platformStatic fun startEndPassNop(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, false, false, false)
     }
     */
+
+    public platformStatic fun startsWithExc(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, true, false, true)
+    }
+    public platformStatic fun endsWithExc(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, false, true, true)
+    }
+    // Well... this is a nice side effect!
+    public platformStatic fun matchAllIfExc(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, true, true, true)
+    }
+    /* Not using this because this is a nop
+    public platformStatic fun startEndNoneNop(matcher: Matcher): StartEndMatcher {
+        return StartEndMatcher(matcher, false, false, true)
+    }
+    */
+
+
 }

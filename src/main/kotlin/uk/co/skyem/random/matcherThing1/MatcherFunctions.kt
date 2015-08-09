@@ -42,12 +42,13 @@ public object MatcherFunctions {
     public platformStatic fun endsWith(matcher: Matcher): StartEndMatcher {
         return StartEndMatcher(matcher, false, true)
     }
+    // Well... this is a nice side effect!
     public platformStatic fun matchAllIf(matcher: Matcher): StartEndMatcher {
         return StartEndMatcher(matcher, true, true)
     }
-    /*
+    /* Not using this because this is a nop
     public platformStatic fun seNop(matcher: Matcher): StartEndMatcher {
-        return StartEndMatcher(matcher, true, false)
+        return StartEndMatcher(matcher, false, false)
     }
     */
 }

@@ -31,9 +31,15 @@ public open class RegexMatcher(pattern: Regex) : Matcher, ToRegex {
 
         try { // no, I don't want to do this, but... https://youtrack.jetbrains.com/issue/KT-8763
             matchRegex.matchAll(string).forEach {
+                // println(": " + it.value + " " + it.range.start + " " + it.range.end)
                 matches.add(Match(it.value, it.range.start, it.range.end))
             }
-        } catch (e: java.lang.IndexOutOfBoundsException) {}
+        } catch (e: java.lang.IndexOutOfBoundsException) {
+            if (matches.last().string == "") {
+                matches.remove(matches.size() - 1)
+                // println(matches.last())
+            }
+        }
 
         return Matches(matches)
     }

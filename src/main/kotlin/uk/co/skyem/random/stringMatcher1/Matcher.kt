@@ -1,4 +1,4 @@
-package uk.co.skyem.random.matcherThing1
+package uk.co.skyem.random.stringMatcher1
 
 import kotlin.platform.platformStatic
 import kotlin.text.RegexOption

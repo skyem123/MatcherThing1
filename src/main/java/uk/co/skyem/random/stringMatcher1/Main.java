@@ -1,6 +1,6 @@
-package uk.co.skyem.random.matcherThing1;
+package uk.co.skyem.random.stringMatcher1;
 
-import static uk.co.skyem.random.matcherThing1.MatcherFunctions.*;
+import static uk.co.skyem.random.stringMatcher1.MatcherFunctions.*;
 
 class Main {
     public static void main(String[] args) {

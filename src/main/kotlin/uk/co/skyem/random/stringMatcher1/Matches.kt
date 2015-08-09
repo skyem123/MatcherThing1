@@ -1,4 +1,4 @@
-package uk.co.skyem.random.matcherThing1
+package uk.co.skyem.random.stringMatcher1
 
 // TODO: Be as lazy as possible.
 public class Matches(matches: Array<Match>) : List<Match> {

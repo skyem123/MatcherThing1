@@ -58,7 +58,7 @@ class Main {
         System.out.println();
 
         // this has no shorthand function, as it is a NOP.
-        StartEndMatcher seMatcher3 = new StartEndMatcher(match("test"), false, false);
+        StartEndMatcher seMatcher3 = new StartEndMatcher(match("test"), false, false, false);
         System.out.println(seMatcher3.toRegexString());
         Matches seMatches3 = seMatcher3.useOn("this is my a test of my thingy");
         System.out.println(seMatches3.first().getString() + " " + seMatches3.first().getStart() + " " + seMatches3.first().getEnd());
@@ -76,6 +76,15 @@ class Main {
         System.out.println(seMatcher5.toRegexString());
         Matches seMatches5 = seMatcher5.useOn("this is my a test of my thingy");
         System.out.println(seMatches5.first().getString() + " " + seMatches5.first().getStart() + " " + seMatches5.first().getEnd());
+
+        System.out.println();
+
+        Inverter inverter = match("test").invert();
+        Matches invertMatches = inverter.useOn("this is a test of my thing");
+        for (Match match : invertMatches) {
+            System.out.println(match.getString() + " " + match.getStart() + " " + match.getEnd());
+        }
+
 
     }
 }

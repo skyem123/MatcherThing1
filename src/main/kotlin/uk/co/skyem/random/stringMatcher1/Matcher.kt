@@ -7,4 +7,8 @@ public interface Matcher {
     fun canToRegex(): Boolean
 
     fun useOn(string: String): Matches
+
+    fun invert(): Inverter {
+        return Inverter(this)
+    }
 }

@@ -11,4 +11,6 @@ public interface ToRegex {
     fun toRegexPattern(): Pattern {
         return toKotlinRegex().toPattern()
     }
+
+    fun canToRegex(): Boolean
 }

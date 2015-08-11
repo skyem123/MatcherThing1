@@ -68,5 +68,7 @@ public object MatcherFunctions {
     }
     */
 
-
+    public platformStatic fun invert(matcher: Matcher): Inverter {
+        return Inverter(matcher)
+    }
 }

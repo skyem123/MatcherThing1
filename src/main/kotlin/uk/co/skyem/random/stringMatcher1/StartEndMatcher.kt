@@ -34,7 +34,7 @@ public class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, e
                 if (!exclusive) // return the whole string
                     return Matches(arrayOf(Match(string, 0, string.length())))
                 else { // return the whole string, excluding the things that were matched
-                    throw UnsupportedOperationException("Not Yet Implemented") // TODO: Implement me
+                    throw UnsupportedOperationException("Not yet implemented")  // TODO: Implement me
                 }
 
             } else return Matches()

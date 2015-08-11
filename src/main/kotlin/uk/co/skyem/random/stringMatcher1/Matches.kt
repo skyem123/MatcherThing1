@@ -64,4 +64,6 @@ public class Matches(matches: Array<Match>) : List<Match> {
     override fun subList(fromIndex: Int, toIndex: Int): List<Match> {
         return matches.toList().subList(fromIndex, toIndex)
     }
+
+    // TODO: Store matcher object, so matches can be inverted?
 }

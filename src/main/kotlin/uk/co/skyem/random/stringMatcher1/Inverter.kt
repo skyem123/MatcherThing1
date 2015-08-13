@@ -14,7 +14,6 @@ public class Inverter(matcher: Matcher) : Matcher {
         // get the old result of matching the string
         val oldResult = matcher.useOn(string)
         // then invert it
-        // how? TODO!
 
         var newResults = listOf<Match>()
 
@@ -29,7 +28,7 @@ public class Inverter(matcher: Matcher) : Matcher {
             // then stick it into an list of matches
             newResults += match
             // then save the new last position
-            lastPosition = it.end + 1
+            lastPosition = it.end
         }
         // and if there is more to go...
         if (lastPosition != string.length()) {

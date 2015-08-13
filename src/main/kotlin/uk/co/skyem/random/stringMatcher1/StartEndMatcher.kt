@@ -52,7 +52,7 @@ public class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, e
         } else /*if (ends)*/ {
             if (exclusive) throw UnsupportedOperationException("Not Yet Implemented") // TODO: Implement me
             // so... we start from the first match going right to left (last match) and take it's position
-            val end = matches.last().end + 1
+            val end = matches.last().end
             // and make a substring starting from the start of string until that then make a match with it and return it
             return Matches(arrayOf(Match(string.substring(0, end), 0, end)))
         }

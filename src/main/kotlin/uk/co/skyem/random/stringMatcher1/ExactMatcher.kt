@@ -10,9 +10,9 @@ import kotlin.text.RegexOption
  * An exact matcher matches a string exactly, no regex, etc...
  */
 public class ExactMatcher(matches: String, caseInsensitive: Boolean) :
-        RegexMatcher(if (caseInsensitive) "(?i)" + Regex.escape(matches) else Regex.escape(matches)) {
-    constructor(matches: String): this(matches, false)
+		RegexMatcher(if (caseInsensitive) "(?i)" + Regex.escape(matches) else Regex.escape(matches)) {
+	constructor(matches: String): this(matches, false)
 
-    val matchString = matches
-    val caseInsensitive = caseInsensitive
+	val matchString = matches
+	val caseInsensitive = caseInsensitive
 }

@@ -10,37 +10,45 @@ import kotlin.text.toRegex
  * A matcher that matches a regex
  */
 public open class RegexMatcher(pattern: Regex) : Matcher, ToRegex {
-    constructor(pattern: String): this(pattern.toRegex())
-    constructor(pattern: String, flag: RegexOption): this(pattern.toRegex(flag))
-    constructor(pattern: String, flags: Set<RegexOption>): this(pattern.toRegex(flags))
-    constructor(pattern: Pattern): this(pattern.toRegex())
-    constructor(pattern: String, flags: Int): this(pattern.toPattern(flags))
+	override fun equals(other: Any?): Boolean {
+		if (other != null && other is RegexMatcher)
+			if (other.toRegexString() == this.toRegexString() &&
+					other.toKotlinRegex().options == this.toKotlinRegex().options)
+				return true
+		return false
+	}
 
-    val matchRegex = pattern
+	constructor(pattern: String): this(pattern.toRegex())
+	constructor(pattern: String, flag: RegexOption): this(pattern.toRegex(flag))
+	constructor(pattern: String, flags: Set<RegexOption>): this(pattern.toRegex(flags))
+	constructor(pattern: Pattern): this(pattern.toRegex())
+	constructor(pattern: String, flags: Int): this(pattern.toPattern(flags))
 
-    override fun toKotlinRegex(): Regex {
-        return matchRegex
-    }
+	val matchRegex = pattern
 
-    override fun canToRegex(): Boolean {
-        return true
-    }
+	override fun toKotlinRegex(): Regex {
+		return matchRegex
+	}
 
-    override fun useOn(string: String): Matches {
-        val matches = ArrayList<Match>()
+	override fun canToRegex(): Boolean {
+		return true
+	}
 
-        try { // no, I don't want to do this, but... https://youtrack.jetbrains.com/issue/KT-8763
-            matchRegex.matchAll(string).forEach {
-                // println(": " + it.value + " " + it.range.start + " " + it.range.end)
-                matches.add(Match(it.value, it.range.start, it.range.end + 1))
-            }
-        } catch (e: java.lang.IndexOutOfBoundsException) {
-            if (matches.last().string == "") {
-                matches.remove(matches.size() - 1)
-                // println(matches.last())
-            }
-        }
+	override fun useOn(string: String): Matches {
+		val matches = ArrayList<Match>()
 
-        return Matches(matches)
-    }
+		try { // no, I don't want to do this, but... https://youtrack.jetbrains.com/issue/KT-8763
+			matchRegex.matchAll(string).forEach {
+				// println(": " + it.value + " " + it.range.start + " " + it.range.end)
+				matches.add(Match(it.value, it.range.start, it.range.end + 1))
+			}
+		} catch (e: java.lang.IndexOutOfBoundsException) {
+			if (matches.last().string == "") {
+				matches.remove(matches.size() - 1)
+				// println(matches.last())
+			}
+		}
+
+		return Matches(matches)
+	}
 }

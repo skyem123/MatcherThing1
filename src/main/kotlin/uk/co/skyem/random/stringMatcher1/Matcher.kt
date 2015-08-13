@@ -4,11 +4,13 @@ import kotlin.platform.platformStatic
 import kotlin.text.RegexOption
 
 public interface Matcher {
-    fun canToRegex(): Boolean
+	fun canToRegex(): Boolean
 
-    fun useOn(string: String): Matches
+	fun useOn(string: String): Matches
 
-    fun invert(): Inverter {
-        return Inverter(this)
-    }
+	fun invert(): Inverter {
+		return Inverter(this)
+	}
+
+	override fun equals(other: Any?): Boolean
 }

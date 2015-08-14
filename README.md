@@ -20,5 +20,5 @@ match("Hello").useOn("Hello, World");
 Will return a ```Matches``` object, with a single ```Match``` object inside that contains the match (in this case, the string ```"Hello"```, the start position of the match and the end position of the match).
 And to match everything up to and incuding another match, use
 ```Java
-leftOf(match("Hello"))
+endsWith(match("Hello"));
 ```

@@ -2,7 +2,6 @@ buildscript {
     ext.kotlin_version = '0.12.1230'
     repositories {
         mavenCentral()
-        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -17,9 +16,6 @@ compileKotlin {
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-    // Use 'jcenter' for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
     mavenCentral()
 }
 

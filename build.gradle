@@ -20,11 +20,11 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:3.+'
+    testCompile 'junit:junit:4.6+'
     testCompile 'org.assertj:assertj-core:2.1.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
-    test.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
 }

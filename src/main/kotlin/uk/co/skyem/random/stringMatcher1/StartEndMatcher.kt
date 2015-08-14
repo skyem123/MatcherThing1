@@ -43,10 +43,8 @@ public class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, e
 			if (matches.matchFound()) {
 				if (!exclusive) // return the whole string
 					return Matches(arrayOf(Match(string, 0, string.length())))
-				else { // return the whole string, excluding the things that were matched
-					throw UnsupportedOperationException("Not yet implemented")  // TODO: Implement me
-				}
-
+				else // return the whole string, excluding the things that were matched, basically, a match().invert
+					return matcher.invert().useOn(string)
 			} else return Matches()
 		} else if (!starts && !ends) { // this is essentially just passing the matches through
 			if (!exclusive)
@@ -54,17 +52,21 @@ public class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, e
 			else
 				return Matches(); // in this case, it returns nothing
 		} else if (starts) { // if it starts with something match the rest
-			if (exclusive) throw UnsupportedOperationException("Not Yet Implemented") // TODO: Implement me
 			// so... we start from the first match going left to right and take the position of the match
 			val start = matches.first().start
-			// and make a substring starting from that until the end then make a match with it and return it
-			return Matches(arrayOf(Match(string.substring(start), start, string.length())))
+			if (exclusive) {
+				val end = matches.first().end
+				return Matches(arrayOf(Match(string.substring(end), end, string.length())))
+			} else    // and make a substring starting from that until the end then make a match with it and return it
+				return Matches(arrayOf(Match(string.substring(start), start, string.length())))
 		} else /*if (ends)*/ {
-			if (exclusive) throw UnsupportedOperationException("Not Yet Implemented") // TODO: Implement me
 			// so... we start from the first match going right to left (last match) and take it's position
 			val end = matches.last().end
-			// and make a substring starting from the start of string until that then make a match with it and return it
-			return Matches(arrayOf(Match(string.substring(0, end), 0, end)))
+			if (exclusive) {
+				val start = matches.last().start
+				return Matches(arrayOf(Match(string.substring(0, start), 0, start)))
+			} else // and make a substring starting from the start of string until that then make a match with it and return it
+				return Matches(arrayOf(Match(string.substring(0, end), 0, end)))
 		}
 	}
 

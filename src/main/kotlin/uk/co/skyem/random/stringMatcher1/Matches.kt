@@ -8,7 +8,6 @@ public class Matches(matches: Array<Match>) : List<Match> {
 	object Matches {
 		fun arrayEqual<T>(a: Array<T>, b: Array<T>): Boolean {
 			if (a.size() != b.size()) return false
-			var allFound = true
 			a.forEach {
 				val thing = it
 				// If an element in a has been found in b...
@@ -16,10 +15,10 @@ public class Matches(matches: Array<Match>) : List<Match> {
 				b.forEach {
 					oneFound = oneFound || thing == it
 				}
-				// if allFound or oneFound is false, set oneFound to false
-				if (!oneFound) allFound = false
+				// if one is not found, return false
+				if (!oneFound) return false
 			}
-			return allFound
+			return true
 		}
 	}
 

@@ -168,11 +168,12 @@ public class MatcherTests extends TestCase {
 
 		assertThat(invert(match("hello"))).isEqualTo(invert(match("hello")));
 		assertThat(invert(match("hello"))).isNotEqualTo(invert(match("world")));
-		System.out.println("inversion matching works");
+		System.out.println("inversion equality works");
 	}
 
 	public void testOtherEquals() throws Exception {
 		assertThat(matchAll().useOn(testString1)).isEqualTo(matchAll().useOn(testString1));
+		System.out.println("match list / array / collection equality works.");
 	}
 }
 

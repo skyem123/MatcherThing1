@@ -5,6 +5,24 @@ public class Matches(matches: Array<Match>) : List<Match> {
 	constructor(matches: Collection<Match>) : this(matches.toTypedArray())
 	constructor()                           : this(arrayOf())
 
+	object Matches {
+		fun arrayEqual<T>(a: Array<T>, b: Array<T>): Boolean {
+			if (a.size() != b.size()) return false
+			var allFound = true
+			a.forEach {
+				val thing = it
+				// If an element in a has been found in b...
+				var oneFound = false
+				b.forEach {
+					oneFound = oneFound || thing == it
+				}
+				// if allFound or oneFound is false, set oneFound to false
+				if (!oneFound) allFound = false
+			}
+			return allFound
+		}
+	}
+
 	private val matches = matches
 
 	fun matchFound(): Boolean {
@@ -63,6 +81,13 @@ public class Matches(matches: Array<Match>) : List<Match> {
 
 	override fun subList(fromIndex: Int, toIndex: Int): List<Match> {
 		return matches.toList().subList(fromIndex, toIndex)
+	}
+
+	override fun equals(other: Any?): Boolean {
+		if (other != null && other is uk.co.skyem.random.stringMatcher1.Matches && Matches.arrayEqual(this.matches, other.matches))
+			return true
+		else
+			return false
 	}
 
 	// TODO: Store matcher object, so matches can be inverted?

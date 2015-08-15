@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 import static uk.co.skyem.random.stringMatcher1.MatcherFunctions.*;
 
 public class MatcherTests extends TestCase {
-	// These are here so I can reuse them without manualy copying them!
+	// These are here so I can reuse them without manually copying them!
 	// DO NOT CHANGE!
 	private final String testString1 = "this is a test of my thing";
 	/*   0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25
@@ -157,7 +157,7 @@ public class MatcherTests extends TestCase {
 		System.out.println("inverter works");
 	}
 
-	public void testEquals() throws Exception {
+	public void testMatcherEquals() throws Exception {
 		assertThat(matchRegex(".")).isEqualTo(matchRegex("."));
 		assertThat(matchRegex(".*")).isNotEqualTo(matchRegex("."));
 		System.out.println("regex matcher equality works.");
@@ -169,8 +169,10 @@ public class MatcherTests extends TestCase {
 		assertThat(invert(match("hello"))).isEqualTo(invert(match("hello")));
 		assertThat(invert(match("hello"))).isNotEqualTo(invert(match("world")));
 		System.out.println("inversion matching works");
+	}
 
-
+	public void testOtherEquals() throws Exception {
+		assertThat(matchAll().useOn(testString1)).isEqualTo(matchAll().useOn(testString1));
 	}
 }
 

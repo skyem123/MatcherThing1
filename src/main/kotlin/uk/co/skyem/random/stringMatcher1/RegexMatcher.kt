@@ -9,7 +9,7 @@ import kotlin.text.toRegex
 /**
  * A matcher that matches a regex
  */
-public open class RegexMatcher(pattern: Regex) : Matcher {
+private open class RegexMatcher(pattern: Regex) : Matcher {
 	override fun equals(other: Any?): Boolean {
 		if (other != null && other is RegexMatcher)
 			if (other.toRegexString() == this.toRegexString() &&

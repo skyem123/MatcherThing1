@@ -149,7 +149,7 @@ public class MatcherTests extends TestCase {
 	}
 
 	public void testInverter() throws Exception {
-		Matches matches = invert(match(matchString1)).useOn(testString1);
+		Matches matches = match(matchString1).invert().useOn(testString1);
 		assertThat(matches).containsOnly(
 			new Match("this is a ", 0, 10),
 			new Match(" of my thing", 14, 26)
@@ -166,8 +166,8 @@ public class MatcherTests extends TestCase {
 		assertThat(matchRegex(".")).isNotEqualTo(matchAll());
 		System.out.println("regex .* and matchAll equality works.");
 
-		assertThat(invert(match("hello"))).isEqualTo(invert(match("hello")));
-		assertThat(invert(match("hello"))).isNotEqualTo(invert(match("world")));
+		assertThat(match("hello").invert()).isEqualTo(match("hello").invert());
+		assertThat(match("hello").invert()).isNotEqualTo(match("world").invert());
 		System.out.println("inversion equality works");
 	}
 

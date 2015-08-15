@@ -5,7 +5,7 @@ public class Matches(matches: Array<Match>) : List<Match> {
 	constructor(matches: Collection<Match>) : this(matches.toTypedArray())
 	constructor()                           : this(arrayOf())
 
-	object Matches {
+	companion object Matches {
 		fun arrayEqual<T>(a: Array<T>, b: Array<T>): Boolean {
 			if (a.size() != b.size()) return false
 			a.forEach {

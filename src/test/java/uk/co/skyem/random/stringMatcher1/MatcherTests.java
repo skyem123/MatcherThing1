@@ -27,6 +27,7 @@ public class MatcherTests extends TestCase {
 	private final String testString2 = "this, is a test!\\E\\Q ... :D";
 	private final String matchString2 = "!\\E\\Q ... :D";
 	private final String testString3 = "this 'is' a test";
+	private final String testString4 = "let's test things test again";
 	/* |t|h|i|s| |'|i|s|'| |a| |t|e|s|t
 	   0 1 2 3 4 5 6 7 8 9*/
 	private final String matchRegex3 = "'.*'";
@@ -116,36 +117,68 @@ public class MatcherTests extends TestCase {
 		System.out.println("StartEndMatcher passthrough NOP passed");
 	}
 
-	public void testStartsWith() throws Exception {
+	public void testStartsWith1() throws Exception {
+		Matches matches = startsWith(match(matchString1)).useOn(testString4);
+		assertThat(matches).containsOnly(
+				new Match("test things test again", 6, 28)
+		);
+		System.out.println("starts with passed (1).");
+	}
+
+	public void testStartsWith2() throws Exception {
 		Matches matches = startsWith(match(matchString1)).useOn(testString1);
 		assertThat(matches).containsOnly(
 				new Match("test of my thing", 10, 26)
 		);
-		System.out.println("starts with passed.");
+		System.out.println("starts with passed (2).");
 	}
 
-	public void testEndsWith() throws Exception {
+	public void testEndsWith1() throws Exception {
+		Matches matches = endsWith(match(matchString1)).useOn(testString4);
+		assertThat(matches).containsOnly(
+			 new Match("let's test things test", 0, 22)
+		);
+		System.out.println("ends with passed (1).");
+	}
+
+	public void testEndsWith2() throws Exception {
 		Matches matches = endsWith(match(matchString1)).useOn(testString1);
 		assertThat(matches).containsOnly(
-			 new Match("this is a test", 0, 14)
+				new Match("this is a test", 0, 14)
 		);
-		System.out.println("ends with passed.");
+		System.out.println("ends with passed (2).");
 	}
 
-	public void testStartsWithExc() throws Exception {
+	public void testStartsWithExc1() throws Exception {
+		Matches matches = startsWithExc(match(matchString1)).useOn(testString4);
+		assertThat(matches).containsOnly(
+				new Match(" things test again", 10, 28)
+		);
+		System.out.println("exclusive starts with passed (1).");
+	}
+
+	public void testStartsWithExc2() throws Exception {
 		Matches matches = startsWithExc(match(matchString1)).useOn(testString1);
 		assertThat(matches).containsOnly(
 				new Match(" of my thing", 14, 26)
 		);
-		System.out.println("exclusive starts with passed.");
+		System.out.println("exclusive starts with passed (2).");
 	}
 
-	public void testEndsWithExc() throws Exception {
+	public void testEndsWithExc1() throws Exception {
+		Matches matches = endsWithExc(match(matchString1)).useOn(testString4);
+		assertThat(matches).containsOnly(
+				new Match("let's test things ", 0, 18)
+		);
+		System.out.println("exclusive ends with passed (1).");
+	}
+
+	public void testEndsWithExc2() throws Exception {
 		Matches matches = endsWithExc(match(matchString1)).useOn(testString1);
 		assertThat(matches).containsOnly(
 				new Match("this is a ", 0, 10)
 		);
-		System.out.println("exclusive ends with passed.");
+		System.out.println("exclusive ends with passed (2).");
 	}
 
 	public void testInverter() throws Exception {

@@ -1,6 +1,6 @@
 package uk.co.skyem.random.stringMatcher1
 
-private class Match(string: String, start: Int, end: Int) {
+public class Match(string: String, start: Int, end: Int) {
 	val start = start
 	val end = end
 	val string = string

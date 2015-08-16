@@ -10,7 +10,7 @@ import uk.co.skyem.ramdom.stringMatcher1.*; // To use the Matcher, Match, and Ma
 Once the functions are statically imported, you can use them to create your matcher objects.
 
 The most basic type of matcher is the exact matcher, with the simple function ```matcher(String)```, it matches only when the string given to it is found.
-To use all matcher, their ```.useOn(String)``` method must be called.
+To use any matcher, their ```.useOn(String)``` method must be called.
 
 The ```.useOn(String)``` runs the matcher on the string given, returning a collection of ```Match``` objects.
 This collection is called ```Matches```, and has some methods for convenience, for example, the ```.first()``` and ```.last()``` method, which return the first and last match respectively.

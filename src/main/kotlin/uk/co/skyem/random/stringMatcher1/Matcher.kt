@@ -1,11 +1,10 @@
 package uk.co.skyem.random.stringMatcher1
 
 import java.util.regex.Pattern
-import kotlin.platform.platformStatic
 import kotlin.text.Regex
 import kotlin.text.RegexOption
 
-public interface Matcher {
+internal interface Matcher {
 	override fun equals(other: Any?): Boolean
 	/**
 	 * Use to check if this matcher can be turned into a RegEx to avoid exceptions.

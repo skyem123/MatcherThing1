@@ -3,7 +3,7 @@ package uk.co.skyem.random.stringMatcher1
 /**
  * Inverts a match
  */
-private class Inverter(matcher: Matcher) : Matcher {
+internal class Inverter(matcher: Matcher) : Matcher {
 	override fun equals(other: Any?): Boolean {
 		if (other != null) {
 			if (other is Inverter) {

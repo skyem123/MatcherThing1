@@ -1,13 +1,15 @@
 package uk.co.skyem.random.stringMatcher1
 
 // TODO: Be as lazy as possible.
-public class Matches(matches: Array<Match>) : List<Match> {
+internal class Matches(matches: Array<Match>) : List<Match> {
 	constructor(matches: Collection<Match>) : this(matches.toTypedArray())
 	constructor()                           : this(arrayOf())
+	
+	override val size = matches.size
 
 	companion object Matches {
-		fun arrayEqual<T>(a: Array<T>, b: Array<T>): Boolean {
-			if (a.size() != b.size()) return false
+		fun arrayEqual(a: Array<Match>, b: Array<Match>): Boolean {
+			if (a.size != b.size) return false
 			a.forEach {
 				val thing = it
 				// If an element in a has been found in b...
@@ -36,38 +38,20 @@ public class Matches(matches: Array<Match>) : List<Match> {
 		return matches.last()
 	}
 
-	override fun size(): Int {
-		return matches.size()
-	}
-
 	override fun isEmpty(): Boolean {
 		return matches.isEmpty()
-	}
-
-	override fun contains(o: Any?): Boolean {
-		return matches.contains(o)
 	}
 
 	override fun iterator(): Iterator<Match> {
 		return matches.iterator()
 	}
 
-	override fun containsAll(c: Collection<Any?>): Boolean {
-		var contain = false
-		c.forEach { contain = contain or contains(it) }
-		return contain
-	}
-
 	override fun get(index: Int): Match {
 		return matches.get(index)
 	}
 
-	override fun indexOf(o: Any?): Int {
-		return matches.indexOf(o)
-	}
-
-	override fun lastIndexOf(o: Any?): Int {
-		return matches.lastIndexOf(o)
+	override fun contains(element: Match): Boolean {
+		return matches.contains(element)
 	}
 
 	override fun listIterator(): ListIterator<Match> {
@@ -87,6 +71,18 @@ public class Matches(matches: Array<Match>) : List<Match> {
 			return true
 		else
 			return false
+	}
+	
+	override fun indexOf(element: Match): Int {
+		return matches.indexOf(element)
+	}
+	
+	override fun containsAll(elements: Collection<Match>): Boolean {
+		return arrayEqual(elements.toTypedArray(), matches)
+	}
+
+	override fun lastIndexOf(element: Match): Int {
+		return matches.lastIndexOf(element)
 	}
 
 	// TODO: Store matcher object, so matches can be inverted?

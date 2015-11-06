@@ -2,7 +2,7 @@ package uk.co.skyem.random.stringMatcher1
 
 import kotlin.text.Regex
 
-private class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, exclusive: Boolean) : Matcher {
+internal class StartEndMatcher(matches: Matcher, starts: Boolean, ends: Boolean, exclusive: Boolean) : Matcher {
 	override fun equals(other: Any?): Boolean {
 		if (other != null)
 			if (other is StartEndMatcher)

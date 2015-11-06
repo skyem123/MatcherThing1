@@ -4,12 +4,11 @@ import java.util.*
 import java.util.regex.Pattern
 import kotlin.text.Regex
 import kotlin.text.RegexOption
-import kotlin.text.toRegex
 
 /**
  * A matcher that matches a regex
  */
-private open class RegexMatcher(pattern: Regex) : Matcher {
+internal open class RegexMatcher(pattern: Regex) : Matcher {
 	override fun equals(other: Any?): Boolean {
 		if (other != null && other is RegexMatcher)
 			if (other.toRegexString() == this.toRegexString() &&
@@ -36,17 +35,10 @@ private open class RegexMatcher(pattern: Regex) : Matcher {
 
 	override fun useOn(string: String): Matches {
 		val matches = ArrayList<Match>()
-
-		try { // no, I don't want to do this, but... https://youtrack.jetbrains.com/issue/KT-8763
-			matchRegex.matchAll(string).forEach {
-				// println(": " + it.value + " " + it.range.start + " " + it.range.end)
-				matches.add(Match(it.value, it.range.start, it.range.end + 1))
-			}
-		} catch (e: java.lang.IndexOutOfBoundsException) {
-			if (matches.last().string == "") {
-				matches.remove(matches.size() - 1)
-				// println(matches.last())
-			}
+		
+		matchRegex.findAll(string).forEach {
+			println(": " + it.value + " " + it.range.start + " " + it.range.end)
+			matches.add(Match(it.value, it.range.start, it.range.end + 1))
 		}
 
 		return Matches(matches)

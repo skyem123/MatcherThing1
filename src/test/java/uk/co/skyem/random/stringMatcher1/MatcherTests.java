@@ -69,6 +69,15 @@ public class MatcherTests extends TestCase {
 		);
 		System.out.println("global match passed.");
 	}
+	
+	public void testEverythingMatcherBlank() throws Exception {
+		Matches matches = matchAll().useOn("");
+		// matches should contain only one match
+		assertThat(matches).containsOnly(
+				new Match("", 0, "".length())
+		);
+		System.out.println("global match with blank string passed.");
+	}
 
 	public void testRegexMatcher() throws Exception {
 		Matches matches = matchRegex(matchRegex3).useOn(testString3);
@@ -195,7 +204,7 @@ public class MatcherTests extends TestCase {
 		assertThat(matchRegex(".*")).isNotEqualTo(matchRegex("."));
 		System.out.println("regex matcher equality works.");
 
-		assertThat(matchRegex(".*")).isEqualTo(matchAll());
+		assertThat(new RegexMatcher(".*", true)).isEqualTo(matchAll());
 		assertThat(matchRegex(".")).isNotEqualTo(matchAll());
 		System.out.println("regex .* and matchAll equality works.");
 

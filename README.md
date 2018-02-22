@@ -1,6 +1,9 @@
 # StringMatcher1
 A string matching thing written in Kotlin, because RegEx is too painful on it's own. (and I wanted to try Kotlin).
 
+## NOW ABANDONED
+I don't have the time to work on this any more, but maybe one day I'll bring this back because this would be useful...
+
 ## Why?
 ### _Because Regular Expressions are too painful on their own._
 Seriously though, I have had a lot of trouble using regex that has actually made me _cry_, so I really want to make something to replace it.
